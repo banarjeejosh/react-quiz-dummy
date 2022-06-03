@@ -1,0 +1,14 @@
+.worp {
+    display: flex;
+}
+.inputHolder {
+    display: flex;
+    flex-direction: column;
+}
+.checkbox{
+    display: flex;
+    flex-direction: revert;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+}
