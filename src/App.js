@@ -199,7 +199,7 @@ function App() {
             <Routes>
             <Route path="/" element={<PublicRoute />} history={history}>
                 <Route path="/login" element={<Login props={data} />} />
-                {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+                <Route path="/" element={<Navigate to="/login" />} />
             </Route>
               <Route path="/" element={<PrivateRoute />} history={history}>
                 <Route path="/quiz" element={<Quiz props={data} />} />
