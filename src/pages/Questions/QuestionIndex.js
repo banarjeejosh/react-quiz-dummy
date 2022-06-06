@@ -1,11 +1,14 @@
 import React ,{ useState, useEffect } from 'react'
-import { Link ,useNavigate } from "react-router-dom";
+import { Link ,useNavigate, useLocation } from "react-router-dom";
 import Button from '../../components/Button';
 import Tables from '../../components/Tables';
 // import { AuthProvider } from '../../contexts/AuthContext';
 import { useAuth } from '../../contexts/AuthContext';
 const QuestionIndex = ({props}) => {
     const navigate = useNavigate();
+    const { state } = useLocation();
+    // const { qna } = state;
+
     const dataquestions = props.questions;
       const [questions, setQuestions] = useState(dataquestions);
 
@@ -13,6 +16,10 @@ const QuestionIndex = ({props}) => {
         questions.find(question => question.id === id).isTrash = true;
         setQuestions(question=>([...questions]))
       }
+    //   useEffect(()=>{
+    //       console.log(state);
+    //     debugger
+    // },[])
   return (
     <div className='questionWorp'>
         <div style={{ display:'flex', justifyContent: 'space-between' , marginBottom:'10px'}} >

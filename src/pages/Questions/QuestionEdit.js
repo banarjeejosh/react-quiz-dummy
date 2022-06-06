@@ -8,58 +8,30 @@ import classes from '../../assets/styles/QuestionInput.module.css'
 const QuestionEdit = ({props}) => {
     const questions =props.questions;
     const { id } = useParams();
-    const question = (questions.find(question => question.id == id))
+    var question = (questions.find(question => question.id == id))
     const [ data, setData  ]= useState({
-        title: '',
-        answer_one_input: '',
-        answer_one_checkbox: false,
-        answer_two_input: '',
-        answer_two_checkbox: false,
-        answer_three_input: '',
-        answer_three_checkbox: false,
-        answer_four_input: '',
-        answer_four_checkbox: false,
-        answer_five_input: '',
-        answer_five_checkbox: false,
-        answer_six_input: '',
-        answer_six_checkbox: false,
-        answer_seven_input: '',
-        answer_seven_checkbox: false,
-        answer_eight_input: '',
-        answer_eight_checkbox: false,
-        answer_nine_input: '',
-        answer_nine_checkbox: false,
-        answer_ten_input: '',
-        answer_ten_checkbox: false,
+      title:question.title,
+      answer_one_input:question.options[0].title,
+      answer_one_checkbox:question.options[0].correct,
+      answer_two_input:question.options[1].title,
+      answer_two_checkbox:question.options[1].correct,
+      answer_three_input:question.options[2].title,
+      answer_three_checkbox:question.options[2].correct,
+      answer_four_input:question.options[3].title,
+      answer_four_checkbox:question.options[3].correct,
+      answer_five_input:question.options[4].title,
+      answer_five_checkbox:question.options[4].correct,
+      answer_six_input:question.options[5].title,
+      answer_six_checkbox:question.options[5].correct,
+      answer_seven_input:question.options[6].title,
+      answer_seven_checkbox:question.options[6].correct,
+      answer_eight_input:question.options[7].title,
+      answer_eight_checkbox:question.options[7].correct,
+      answer_nine_input:question.options[8].title,
+      answer_nine_checkbox:question.options[8].correct,
+      answer_ten_input:question.options[9].title,
+      answer_ten_checkbox:question.options[9].correct,
     });
-    useEffect(()=>{
-        if(question){
-            setData({
-                title:question.title,
-                answer_one_input:question.options[0].title,
-                answer_one_checkbox:question.options[0].currect,
-                answer_two_input:question.options[1].title,
-                answer_two_checkbox:question.options[1].currect,
-                answer_three_input:question.options[2].title,
-                answer_three_checkbox:question.options[2].currect,
-                answer_four_input:question.options[3].title,
-                answer_four_checkbox:question.options[3].currect,
-                answer_five_input:question.options[4].title,
-                answer_five_checkbox:question.options[4].currect,
-                answer_six_input:question.options[5].title,
-                answer_six_checkbox:question.options[5].currect,
-                answer_seven_input:question.options[6].title,
-                answer_seven_checkbox:question.options[6].currect,
-                answer_eight_input:question.options[7].title,
-                answer_eight_checkbox:question.options[7].currect,
-                answer_nine_input:question.options[8].title,
-                answer_nine_checkbox:question.options[8].currect,
-                answer_ten_input:question.options[9].title,
-                answer_ten_checkbox:question.options[9].currect,
-            })
-
-        }
-    },[])
     const navigate = useNavigate();
     const onHandleChange = (event) => {
         if(event.target.type === 'checkbox') {
@@ -74,107 +46,29 @@ const QuestionEdit = ({props}) => {
     };
     async function handleSubmit(e) {
         e.preventDefault();
+        question.title= data.title
+        question.options[0].title = data.answer_one_input
+        question.options[0].correct = data.answer_one_checkbox
+        question.options[1].title = data.answer_two_input
+        question.options[1].correct = data.answer_two_checkbox
+        question.options[2].title = data.answer_three_input
+        question.options[2].correct = data.answer_three_checkbox
+        question.options[3].title = data.answer_four_input
+        question.options[3].correct = data.answer_four_checkbox
+        question.options[4].title = data.answer_five_input
+        question.options[4].correct = data.answer_five_checkbox
+        question.options[5].title = data.answer_six_input
+        question.options[5].correct = data.answer_six_checkbox
+        question.options[6].title = data.answer_seven_input
+        question.options[6].correct = data.answer_seven_checkbox
+        question.options[7].title = data.answer_eight_input
+        question.options[7].correct = data.answer_eight_checkbox
+        question.options[8].title = data.answer_nine_input
+        question.options[8].correct = data.answer_nine_checkbox
+        question.options[9].title = data.answer_ten_input
+        question.options[9].correct = data.answer_ten_checkbox
+          navigate("/questions")
 
-        const newQuestin = {
-            "id": Math.floor(Math.random()*1000)            ,
-            "isTrash": false,
-            "title": data.title,
-            "options": [
-              {
-                "title": data.answer_one_input,
-              },
-              {
-                "title": data.answer_two_input,
-              },
-              {
-                "title": data.answer_three_input,
-              },
-              {
-                "title": data.answer_four_input,
-              },
-              {
-                "title": data.answer_five_input,
-              },
-              {
-                "title": data.answer_six_input,
-              },
-              {
-                "title": data.answer_seven_input,
-              },
-              {
-                "title": data.answer_eight_input,
-              },
-              {
-                "title": data.answer_nine_input,
-              },
-              {
-                "title": data.answer_ten_input,
-              },
-            ]
-          };
-          const newQuestinAndAns = {
-            "id": Math.floor(Math.random()*1000)            ,
-            "isTrash": false,
-            "title": data.title,
-            "options": [
-              {
-                "title": data.answer_one_input,
-                "checked": data.answer_one_checkbox,
-              },
-              {
-                "title": data.answer_two_input,
-                "checked": data.answer_two_checkbox,
-              },
-              {
-                "title": data.answer_three_input,
-                
-                "checked": data.answer_three_checkbox,
-              },
-              {
-                "title": data.answer_four_input,
-                
-                "checked": data.answer_four_checkbox,
-              },
-              {
-                "title": data.answer_five_input,
-                
-                "checked": data.answer_five_checkbox,
-              },
-              {
-                "title": data.answer_six_input,
-                "checked": data.answer_six_checkbox,
-              },
-              {
-                "title": data.answer_seven_input,
-                
-                "checked": data.answer_seven_checkbox,
-              },
-              {
-                "title": data.answer_eight_input,
-                "checked": data.answer_eight_checkbox,
-              },
-              {
-                "title": data.answer_nine_input,
-                
-                "checked": data.answer_nine_checkbox,
-              },
-              {
-                "title": data.answer_ten_input,
-                "checked": data.answer_ten_checkbox,
-              },
-            ]
-          }
-        //   props.questions.push(newQuestinAndAns);
-          navigate("/questions", { questions: questions })
-        // try {
-        //   setError("");
-        //   setLoading(true);
-        //   history.push("/");
-        // } catch (err) {
-        //   console.log(err);
-        //   setLoading(false);
-        //   setError("Failed to login!");
-        // }
       }
   return (
     <div>
@@ -211,6 +105,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_one_checkbox"
                 value={data.answer_one_checkbox}
+                checked={data.answer_one_checkbox}
                 handleChange={onHandleChange}
                 />
                 <Label forInput="answer_one_checkbox" value="Select as Answer" />
@@ -234,6 +129,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_two_checkbox"
                 value={data.answer_two_checkbox}
+                checked={data.answer_two_checkbox}
                 handleChange={onHandleChange}
                 />
                 
@@ -261,6 +157,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_three_checkbox"
                 value={data.answer_three_checkbox}
+                checked={data.answer_three_checkbox}
                 handleChange={onHandleChange}
                 />
                 <Label forInput="" value="Select as Answer" />
@@ -288,6 +185,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_four_checkbox"
                 value={data.answer_four_checkbox}
+                checked={data.answer_four_checkbox}
                 handleChange={onHandleChange}
                 />
                 <Label forInput="" value="Select as Answer" />
@@ -311,6 +209,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_five_checkbox"
                 value={data.answer_five_checkbox}
+                checked={data.answer_five_checkbox}
                 handleChange={onHandleChange}
                 />
                 <Label forInput="" value="Select as Answer" />
@@ -338,6 +237,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_six_checkbox"
                 value={data.answer_six_checkbox}
+                checked={data.answer_six_checkbox}
                 handleChange={onHandleChange}
                 />
                 
@@ -364,6 +264,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_seven"
                 value={data.answer_seven}
+                checked={data.answer_seven}
                 handleChange={onHandleChange}
                 />
                 <Label forInput="" value="Select as Answer" />
@@ -391,6 +292,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_eight_checkbox"
                 value={data.answer_eight_checkbox}
+                checked={data.answer_eight_checkbox}
                 handleChange={onHandleChange}
                 />
                 <Label forInput="" value="Select as Answer" />
@@ -417,6 +319,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_nine_checkbox"
                 value={data.answer_nine_checkbox}
+                checked={data.answer_nine_checkbox}
                 handleChange={onHandleChange}
                 />
                 
@@ -443,6 +346,7 @@ const QuestionEdit = ({props}) => {
                 <Checkbox
                 name="answer_ten_checkbox"
                 value={data.answer_ten_checkbox}
+                checked={data.answer_ten_checkbox}
                 handleChange={onHandleChange}
                 />
                 

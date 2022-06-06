@@ -1,4 +1,6 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, HistoryRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
 import "./assets/styles/App.css";
 import { AuthProvider } from "./contexts/AuthContext";
 import Layout from "./components/Layout";
@@ -8,11 +10,13 @@ import QuestionIndex from "./pages/Questions/QuestionIndex";
 import Result from "./pages/Result";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
+import AdminRoute from "./components/AdminRoute";
 import QuestionAdd from "./pages/Questions/QuestionAdd";
 import QuestionTrash from "./pages/Questions/QuestionTrash";
 import QuestionEdit from "./pages/Questions/QuestionEdit";
 
 function App() {
+  const history = createBrowserHistory({ window });
   const data = {
     questions: 
       [
@@ -187,28 +191,31 @@ function App() {
             "password": '123456'
         }
     ]
-};
+}
   return (
     <>
     <AuthProvider>
-
         <Layout>
             <Routes>
-              <Route path="/login" element={<Login props={data} />} />
-                <Route path="/" element={<Navigate to="/login" />} />
-              <Route path="" element={<PrivateRoute />}>
-              <Route path="/quiz" element={<Quiz props={data} />} />
-              <Route path="/result" element={<Result props={data} />} />
-                <Route path="/questions" element={<QuestionIndex props={data} />} />
-                <Route path="/questions/add" element={<QuestionAdd props={data} />} />
-                <Route path="/questions/:id/edit" element={<QuestionEdit props={data} />} />
-                <Route path="/questions/trash" element={<QuestionTrash props={data} />} />
+            <Route path="/" element={<PublicRoute />} history={history}>
+                <Route path="/login" element={<Login props={data} />} />
+                {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+            </Route>
+              <Route path="/" element={<PrivateRoute />} history={history}>
+                <Route path="/quiz" element={<Quiz props={data} />} />
+                <Route path="/result" element={<Result props={data} />} />
+                <Route path="/" element={<AdminRoute />}>
+                  <Route path="/questions" element={<QuestionIndex props={data} />} />
+                  <Route path="/questions/add" element={<QuestionAdd props={data} />} />
+                  <Route path="/questions/:id/edit" element={<QuestionEdit props={data} />} />
+                  <Route path="/questions/trash" element={<QuestionTrash props={data} />} />
+                </Route>
               </Route>
           </Routes>
         </Layout>
     </AuthProvider>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

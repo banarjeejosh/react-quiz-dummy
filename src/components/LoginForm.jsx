@@ -13,11 +13,11 @@ const LoginForm = ({users}) => {
   const [loading, setLoading] = useState();
   const { login , currentUser } = useAuth();
   const navigate = useNavigate();
-  useEffect(() => {
-    if(localStorage.getItem("currentUser") !== null){
-      navigate("/quiz");
-      }
-    }, []);
+  // useEffect(() => {
+  //   if(localStorage.getItem("currentUser") !== null){
+  //     navigate("/quiz");
+  //     }
+  //   }, []);
 
   async function handleSubmit(e) {
    e.preventDefault();

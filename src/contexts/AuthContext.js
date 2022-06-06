@@ -13,6 +13,7 @@ export function useAuth() {
     useEffect(() => {
         if(localStorage.getItem("currentUser") !== null){
             setCurrentUser(JSON.parse(localStorage.getItem("currentUser")))
+            // const history = useHistory()
        }else{
            setCurrentUser(null);
        }
@@ -29,7 +30,7 @@ export function useAuth() {
       const user = users.filter((user)=>user.email === email && user.password === password )
     //   debugger
       if(user.length) {
-        navigate("/quiz")
+        // navigate("/quiz")
         setCurrentUser(user);
         localStorage.setItem('currentUser',JSON.stringify(user))
       } else {

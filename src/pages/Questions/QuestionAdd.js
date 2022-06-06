@@ -6,7 +6,7 @@ import Label from '../../components/Label';
 import Checkbox from './Checkbox';
 import classes from '../../assets/styles/QuestionInput.module.css'
 const QuestionAdd = ({props}) => {
-    const [questions, setQuestions] = useState(props.questions);
+    const [questions, setQuestions] = useState(props.questions)
     const [ data, setData  ]= useState({
         title: '',
         answer_one_input: '',
@@ -35,53 +35,17 @@ const QuestionAdd = ({props}) => {
         if(event.target.type === 'checkbox') {
             setData(data => {
                 return { ...data, [event.target.name]: event.target.checked }
-              });
-              return;
+              })
+              return
         }
         setData(data => {
             return { ...data, [event.target.name]: event.target.value }
-          });
-    };
+          })
+    }
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const newQuestin = {
-            "id": Math.floor(Math.random()*1000)            ,
-            "isTrash": false,
-            "title": data.title,
-            "options": [
-              {
-                "title": data.answer_one_input,
-              },
-              {
-                "title": data.answer_two_input,
-              },
-              {
-                "title": data.answer_three_input,
-              },
-              {
-                "title": data.answer_four_input,
-              },
-              {
-                "title": data.answer_five_input,
-              },
-              {
-                "title": data.answer_six_input,
-              },
-              {
-                "title": data.answer_seven_input,
-              },
-              {
-                "title": data.answer_eight_input,
-              },
-              {
-                "title": data.answer_nine_input,
-              },
-              {
-                "title": data.answer_ten_input,
-              },
-            ]
-          };
+
           const newQuestinAndAns = {
             "id": Math.floor(Math.random()*1000)            ,
             "isTrash": false,
@@ -89,48 +53,48 @@ const QuestionAdd = ({props}) => {
             "options": [
               {
                 "title": data.answer_one_input,
-                "checked": data.answer_one_checkbox,
+                "correct": data.answer_one_checkbox,
               },
               {
                 "title": data.answer_two_input,
-                "checked": data.answer_two_checkbox,
+                "correct": data.answer_two_checkbox,
               },
               {
                 "title": data.answer_three_input,
                 
-                "checked": data.answer_three_checkbox,
+                "correct": data.answer_three_checkbox,
               },
               {
                 "title": data.answer_four_input,
                 
-                "checked": data.answer_four_checkbox,
+                "correct": data.answer_four_checkbox,
               },
               {
                 "title": data.answer_five_input,
                 
-                "checked": data.answer_five_checkbox,
+                "correct": data.answer_five_checkbox,
               },
               {
                 "title": data.answer_six_input,
-                "checked": data.answer_six_checkbox,
+                "correct": data.answer_six_checkbox,
               },
               {
                 "title": data.answer_seven_input,
                 
-                "checked": data.answer_seven_checkbox,
+                "correct": data.answer_seven_checkbox,
               },
               {
                 "title": data.answer_eight_input,
-                "checked": data.answer_eight_checkbox,
+                "correct": data.answer_eight_checkbox,
               },
               {
                 "title": data.answer_nine_input,
                 
-                "checked": data.answer_nine_checkbox,
+                "correct": data.answer_nine_checkbox,
               },
               {
                 "title": data.answer_ten_input,
-                "checked": data.answer_ten_checkbox,
+                "correct": data.answer_ten_checkbox,
               },
             ]
           }

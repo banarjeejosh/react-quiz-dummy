@@ -8,7 +8,6 @@ const Result = ({props}) => {
     // const navigate  = useNavigate();
     // const navigate = useLocation();
     const { state } = useLocation();
-    console.log(useLocation());
     const { qna } = state;
     const answers = props.questions;
 
