@@ -31,7 +31,7 @@ const reducer = (state, action) => {
 };
 
 const Quiz = ({props}) => {
-  var questions = props.questions;
+  var questions = props.questions.filter((question)=>(question.isTrash !== true));
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [qna, dispatch] = useReducer(reducer, initialState);

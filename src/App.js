@@ -197,11 +197,7 @@ function App() {
     <AuthProvider>
         <Layout>
             <Routes>
-            <Route path="/" element={<PublicRoute />} history={history}>
-                <Route path="/login" element={<Login props={data} />} />
-                <Route path="/" element={<Navigate to="/login" />} />
-            </Route>
-              <Route path="/" element={<PrivateRoute />} history={history}>
+              <Route path="/" element={<PrivateRoute />}>
                 <Route path="/quiz" element={<Quiz props={data} />} />
                 <Route path="/result" element={<Result props={data} />} />
                 <Route path="/" element={<AdminRoute />}>
@@ -211,6 +207,10 @@ function App() {
                   <Route path="/questions/trash" element={<QuestionTrash props={data} />} />
                 </Route>
               </Route>
+            <Route path="/" element={<PublicRoute />} history={history}>
+                <Route path="/login" element={<Login props={data} />} />
+                <Route path="/" element={<Navigate to="/login" />} />
+            </Route>
           </Routes>
         </Layout>
     </AuthProvider>
